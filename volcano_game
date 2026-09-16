@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Find-It Game</title>
+<style>
+body {
+  background: #101820;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 20px;
+}
+.game-area {
+  position: relative;
+  display: inline-block;
+}
+.game-img {
+  width: 800px;
+  border: 4px solid #4a8cff;
+  border-radius: 10px;
+}
+.target {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+.message {
+  margin-top: 20px;
+  font-size: 24px;
+  display: none;
+}
+</style>
+</head>
+<body>
+
+<h1>Find the Pirate Mark</h1>
+<p>Blackthorn hid a secret symbol somewhere in this scene. Find it!</p>
+
+<div class="game-area">
+  <img src="volcano_image.jpg" class="game-img">
+
+  <!-- Position the target over the hidden spot -->
+  <div class="target" style="top: 320px; left: 540px;" onclick="foundIt()"></div>
+</div>
+
+<div class="message" id="msg">
+  You found it! The next clue is:<br><br>
+  <strong>“Seek the foggy shrooms.”</strong>
+</div>
+
+<script>
+function foundIt() {
+  document.getElementById("msg").style.display = "block";
+}
+</script>
+
+</body>
+</html>

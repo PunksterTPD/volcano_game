@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Find-It Game</title>
+<style>
+body {
+  background: #101820;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 20px;
+}
+.game-area {
+  position: relative;
+  display: inline-block;
+}
+.game-img {
+  width: 800px;
+  border: 4px solid #4a8cff;
+  border-radius: 10px;
+}
+.target {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+.message {
+  margin-top: 20px;
+  font-size: 24px;
+  display: none;
+}
+.target {
+  cursor: url(''), auto;   /* forces arrow even on clickable items */
+}
+
+@keyframes glowPulse {
+  0% { transform: scale(1); filter: drop-shadow(0 0 0px gold); }
+  50% { transform: scale(1.2); filter: drop-shadow(0 0 20px gold); }
+  100% { transform: scale(1); filter: drop-shadow(0 0 0px gold); }
+}
+
+@keyframes sparkleBurst {
+  0% { opacity: 0; transform: scale(0.5); }
+  50% { opacity: 1; transform: scale(1.5); }
+  100% { opacity: 0; transform: scale(2); }
+}
+
+.sparkle {
+  position: absolute;display: inline-block;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, gold 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: sparkleBurst 1s ease-out forwards;
+}
+
+</style>
+</head>
+<body>
+
+<h1>Find the Pirate Symbol</h1>
+<p>Kael: “Blackthorn overloaded the lava vents. Again. He left behind some kind of molten key. If you want it, you’ll have to run the obstacle course.”</p>
+<p>Blackthorn hid a secret symbol somewhere in this scene. Find it!</p>
+
+<div style="text-align: center;">
+  <img src="hidden_image.jpg" alt="Quest Image" width="60" style="margin-bottom:20px;">
+</div>
+
+<div class="game-area">
+
+  <img src="volcano_image.jpg" class="game-img">
+
+  <!-- Position the target over the hidden spot -->
+  <div class="target" style="top: 45px; left: 465px;" onclick="foundIt()">
+    </div>
+</div>
+
+<div class="message" id="msg">
+  You found the hidden symbol!<br><br>
+  <strong>“Now go find the rune with this view! Oh, and the answer for this rune is: _hi_e_ _e T_m_e_s”</strong>
+</div>
+
+<script>
+function foundIt() {
+  document.getElementById("msg").style.display = "block";
+}
+</script>
+<script>
+function foundIt() {
+  const target = document.querySelector('.target');
+  const area = document.querySelector('.game-area');
+
+  // Glow pulse animation
+  target.style.animation = 'glowPulse 1s ease-out';
+
+  // Create sparkle burst
+  const sparkle = document.createElement('div');
+  sparkle.classList.add('sparkle');
+
+  // Position sparkle directly over the target
+  sparkle.style.top = (target.offsetTop - 30) + 'px';
+  sparkle.style.left = (target.offsetLeft - 30) + 'px';
+
+  // Add sparkle inside the same container as the background image
+  area.appendChild(sparkle);
+
+  // Remove sparkle after animation
+  setTimeout(() => sparkle.remove(), 1000);
+
+  // Show message
+  document.getElementById("msg").style.display = "block";
+}
+
+</script>
+
+</body>
+</html>
